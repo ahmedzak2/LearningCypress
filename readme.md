@@ -298,3 +298,24 @@ cy.on("window:alert",(str)=>{
     })
     ```
     
+
+    ### How to handle table and find element 
+    - this scenario we need to find raw by specific text then get the value in next raw 
+
+    ```
+    cy.get("tr td:nth-child(2)").each(($el, index, $list) => {
+
+    const text = $el.text()
+
+if(text.includes("QA Expert Course :Software Testing + Bugzilla + SQL + Agile	"))
+ {
+const message =  cy.get("tr td:nth-child(2)").eq(index).next().text()
+message.should.be.equal("25")
+
+}
+        
+    })
+    ```
+ - so we use array  for get for every raw of table to serach for text then when find it 
+  - we will pass the index with locater  which we use to find column which have the raws off texts then use .eq(index) 
+   - then use next() to move to next sibling 
