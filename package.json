@@ -1,0 +1,14 @@
+{
+  "name": "cypress-automation-project",
+  "version": "1.0.0",
+  "description": "A simple project to demonstrate Cypress automation.",
+  "main": "index.js",
+  "scripts": {
+    "test": "cypress run"
+  },
+  "author": "ziko",
+  "license": "ISC",
+  "devDependencies": {
+    "cypress": "^13.7.3"
+  }
+}
