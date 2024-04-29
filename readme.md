@@ -319,3 +319,41 @@ message.should.be.equal("25")
  - so we use array  for get for every raw of table to serach for text then when find it 
   - we will pass the index with locater  which we use to find column which have the raws off texts then use .eq(index) 
    - then use next() to move to next sibling 
+
+
+### Hover in cypress 
+
+- we don't have action class like selenium so we use method form jquery using invoke ()  then show to show any hidden eleemnts 
+```
+  it('Practice hover by mouse', function() {
+        cy.visit("https://rahulshettyacademy.com/AutomationPractice/");
+        cy.get("div.mouse-hover-content").invoke("show").then(function() {
+            cy.contains('Top').click();
+            cy.wait(2000);  // Consider using a more deterministic wait condition if possible
+        });
+
+        cy.url().then(url => {
+            cy.log(url);  // Logs the current URL
+            console.log("URL after navigation: " + url);  // Outputs the current URL to console
+        });
+
+        cy.url().should("include", "top");  // Check that URL includes 'top'
+    });
+```
+
+- or if you goal to vlivk only on hidden eleement you can use 
+```
+it('Practice hover by mouse part 2 ', function() {
+        cy.visit("https://rahulshettyacademy.com/AutomationPractice/");
+            cy.contains('Top').click({force:true});
+            cy.wait(2000);  // Consider using a more deterministic wait condition if possible
+
+        cy.url().then(url => {
+            cy.log(url);  // Logs the current URL
+            console.log("URL after navigation: " + url);  // Outputs the current URL to console
+        });
+
+        cy.url().should("include", "top");  // Check that URL includes 'top'
+    });
+});
+```
