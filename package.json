@@ -9,6 +9,7 @@
   "author": "ziko",
   "license": "ISC",
   "devDependencies": {
-    "cypress": "^13.7.3"
+    "cypress": "^13.7.3",
+    "cypress-iframe": "^1.0.1"
   }
 }

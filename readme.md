@@ -125,6 +125,12 @@ As similar to drive in selenium use the command to go to url
     - to get element and send word to search box 
 
     - you can use cypress browser to get it generate element for you add as locaters
+    ### improtants 
+     - his line is a directive for TypeScript, known as a triple-slash directive, that tells the TypeScript compiler to include the type definitions for Cypress.
+     
+      This is crucial for enabling intelligent code completion (IntelliSense), type checking, and other features that 
+       
+       enhance the development experience in IDEs that support TypeScript.
 
      ```
      /// <reference types="Cypress" />
@@ -252,6 +258,21 @@ cy.get('select').select('Option2')
  cy.log(logo.text())
 ```
 
+
+- We use jquery to find value of element  but because it's not a cypress command we use function 
+```
+ cy.get("#opentab").then(function(el)
+        {
+         
+        const url = el.prop('herf')
+        cy.visit(url)
+        })
+```
+
+- To convert form string to number use method Number ()
+```
+cy.get(".react-calendar__year-view__months__month").eq(Number(monthNumber)-1).click();
+```
 ## Alert 
 
  **<span style="color:blue;"> cypress is auto accept alert and pop** 
@@ -341,7 +362,7 @@ message.should.be.equal("25")
     });
 ```
 
-- or if you goal to vlivk only on hidden eleement you can use 
+- or if you goal to visit only on hidden element you can use 
 ```
 it('Practice hover by mouse part 2 ', function() {
         cy.visit("https://rahulshettyacademy.com/AutomationPractice/");
@@ -353,7 +374,30 @@ it('Practice hover by mouse part 2 ', function() {
             console.log("URL after navigation: " + url);  // Outputs the current URL to console
         });
 
-        cy.url().should("include", "top");  // Check that URL includes 'top'
+        cy.url().should("include", "top");  // Check that URL includes 'top' 
     });
 });
 ```
+
+### Frames 
+- You must download this plugin for frames to make cypress work with it 
+
+```
+npm install -D cypress-iframe
+
+```
+
+- To load frame  into cypress 
+```
+cy.frameLoaded("courses-iframe")
+```
+- To tell the cypress to switch for iFrame mood and any method you use it will be in frame 
+```
+ cy.iframe()
+```
+- to find element inside frame 
+```
+cy.iframe().find("a [href*='mentorship']").eq(0).click()
+
+```
+- in cypress you can't see the screen shot of other frames 

@@ -1,6 +1,6 @@
 /// <reference types="Cypress" />
 
-describe('My fourth Test Suite', function() {
+describe('My Howvers by mouse Test Suite', function() {
     it('Practice hover by mouse', function() {
         cy.visit("https://rahulshettyacademy.com/AutomationPractice/");
         cy.get("div.mouse-hover-content").invoke("show").then(function() {
