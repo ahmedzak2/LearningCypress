@@ -91,7 +91,17 @@ As similar to drive in selenium use the command to go to url
 4- cypress.config.js
   - Tell the path of test spec 
   
+  ## config file 
 
+  - it use it to make edit for all configuration as 
+  ```
+  defaultCommandTimeout: 6000,
+  ```
+
+- you can make  specific edit for config to make it work only inside specific socpe as test as above 
+```
+
+```
 ## cypress notes 
 - cypress only support CSS selectors 
 - #IDNmae this is id 
@@ -154,7 +164,7 @@ As similar to drive in selenium use the command to go to url
     ```
      - use contains to search for specific text in dom 
 
-    ## to use assert 
+    ### to use assert 
 
     ```
         cy.get(".product:visible").should('have.length',4)
@@ -175,7 +185,15 @@ As similar to drive in selenium use the command to go to url
         })
    ```
 
+- To use assert to check for attritubte 
+```
+cy.get("nth-child(1) > .form-control").should('have.attr','minlength','2')
+```
+- To chek the element is disabled mode or not 
+```
+cy.get('#inlineRadio3').should('be.disabled')
 
+```
   - It uses for when the return is more than one element it will take the elements as array and do methods on them
     
      - each(($el, index, $list)=> {
@@ -401,3 +419,119 @@ cy.iframe().find("a [href*='mentorship']").eq(0).click()
 
 ```
 - in cypress you can't see the screen shot of other frames 
+
+### Hooks 
+- You use hooks as  same in selenium  before & after as 
+
+```
+  before(function(){
+       code 
+
+    })
+```
+
+### fixtures
+- Use fixtures floder to create file of jason for Data 
+ - Add data in jason format as 
+ ```
+{
+  "name":"ahmed",
+  "gender":"male"
+}
+
+ ```
+ - Use this command to acccess the file to get data to braek the promise and make the data scope is global and use it outside the function  
+ ```
+   cy.fixture('exmaple').then(function(data){
+
+            // this have access to entire class  and initlize globalvirable 
+        this.data =data
+        })
+  ```
+
+  - To access the data we use this 
+```
+  cy.get('select').select(this.data.gender).should('have.value', 'Male');
+```
+
+- if use multi data for same var use this 
+
+```
+  "productName":["Blackberry","Nokia Edge","Samsung Note 8"]
+
+```
+- And to use it we use this method 
+```
+ this.data.productName.forEach(function(element){
+            cy.selectProduct(element)
+
+      });
+```
+
+## Command.js in support 
+
+- use it make custom command  by add it to file  as see 
+- cyprees.comands.to tell the cypress we make comand to use as common method in selenium
+```
+Cypress.Commands.overwrite('selectProduct', (productName) => { 
+    cy.get('h4.card-title').each(($el, index, $list) => {
+        // const textVeg=$el.text()
+        if($el.text().includes(productName))
+        {
+        cy.get('button.btn.btn-info').eq(index).click()
+        }
+        })
+
+ })
+```
+
+### Class 
+
+#### To create class for page use as 
+```
+class HomePage{
+
+}
+```
+- To make all element aviable to use for all pages 
+
+```
+export default HomePage
+```
+
+##### you make the variable as methods so you can use it in all the test cases 
+```
+getEditBox(){
+        return         cy.get(':nth-child(1) > .form-control')
+    }
+```
+ - you need to import your page as  shown 
+
+ ```
+ import HomePage from "../pageObject/Homepage"
+```
+
+- You need to create object of class so we can use it 
+
+```
+const HomePage= new HomePage()
+```
+
+## fix errors
+- Use the {force: true}  if your locater is covered by another one to make sure it worked 
+
+```
+checkOut.getCheckBox().click({force: true} );
+
+```
+cy.all():
+
+cy.all() is not a built-in Cypress command but a pattern often used with third-party utilities or custom implementations to handle multiple promises simultaneously. It is typically used to mimic the behavior of Promise.all(),
+
+ which resolves when all of its constituent promises have resolved.
+In the context of Cypress, cy.all() can be achieved with a helper function that uses Promise.all() under the hood to wait for multiple Cypress commands (which are promise-like but not actual promises) to complete.
+
+.spread():
+
+.spread() is a method that comes from the Bluebird promise library, which was more commonly used in earlier versions of JavaScript for handling promises. It takes an array of resolved values and spreads them out as arguments to a function.
+In more modern JavaScript (ES6 and beyond), this behavior can typically be handled with Promise.all() combined with destructuring in the .then() callback.

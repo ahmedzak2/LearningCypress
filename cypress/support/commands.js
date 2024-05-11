@@ -22,4 +22,27 @@
 //
 //
 // -- This will overwrite an existing command --
+
+import Products from "../integration/pageObject/Products"
+
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+Cypress.Commands.add('selectProduct', (productName) => { 
+    cy.get('h4.card-title').each(($el, index, $list) => {
+        // const textVeg=$el.text()
+        if($el.text().includes(productName))
+        {
+        cy.get('button.btn.btn-info').eq(index).click()
+        }
+        })
+
+ })
+ Cypress.Commands.add('selectProductusingPageObject', (productName) => { 
+    cy.get('h4.card-title').each(($el, index, $list) => {
+        // const textVeg=$el.text()
+        if($el.text().includes(productName))
+        {
+        cy.get('button.btn.btn-info').eq(index).click()
+        }
+        })
+    })
+

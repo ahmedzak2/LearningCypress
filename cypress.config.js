@@ -1,6 +1,8 @@
 const { defineConfig } = require("cypress");
 
 module.exports = defineConfig({
+  defaultCommandTimeout: 6000,
+
   e2e: {
     setupNodeEvents(on, config) {
       // implement node event listeners here
@@ -9,6 +11,7 @@ module.exports = defineConfig({
     screenshotOnRunFailure: true,
     screenshotsFolder: 'cypress/screenshots',
     taskTimeout: 60000,
+    
 
   },
 });
