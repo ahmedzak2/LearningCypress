@@ -11,7 +11,8 @@ describe('My end to end Test Suite', function() {
     });
 
     beforeEach(function() {
-        cy.visit("https://rahulshettyacademy.com/angularpractice/");
+        
+        cy.visit(Cypress.env('url')+"/angularpractice/");
         cy.fixture('example').then(function(data) {
             this.data = data;
         });
@@ -98,6 +99,14 @@ describe('My end to end Test Suite', function() {
             expect(calculatedTotal).to.eq(displayedTotal);
             cy.log(calculatedTotal)
             cy.log(displayedTotal)
+        });
+        checkOut.getAllPricesOfProducts().then(calculatedTotal => {
+            checkOut.getTotalPrice().then(displayedTotal => {
+                // Now we compare the totals within a then to ensure they have both resolved
+                expect(calculatedTotal).to.eq(displayedTotal);
+                cy.log(`Calculated Total: ${calculatedTotal}`);
+                cy.log(`Displayed Total: ${displayedTotal}`);
+            });
         });
 
         checkOut.getCheckoutButton().click();

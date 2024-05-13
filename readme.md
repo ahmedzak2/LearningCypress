@@ -102,6 +102,47 @@ As similar to drive in selenium use the command to go to url
 ```
 
 ```
+
+- If you have link need to use it for all your test use this  instead your config file 
+
+```
+  env:{
+
+    url:"https://rahulshettyacademy.com/angularpractice/",
+  },
+
+```
+
+- you can use this link to make env filr work on all  write it inside your test file 
+```
+Cypress.env('url')
+```
+- you can run your cypress form  terminal and over write the env in config file  as show 
+
+```
+ npx cypress run --spec cypress/integration/testcases/TestFrameWork2.js --headed --browser chrome --env url="https://rahulshettyacademy.com"  
+```
+
+## Plugin for screen show 
+follow this link in page 
+```
+https://www.npmjs.com/package/cypress-mochawesome-reporter
+```
+
+- This is lisnter is require and it write inside of stepupNode  & stepupNode is which change behaviour of cypress 
+
+```
+setupNodeEvents(on, config) {
+        require('cypress-mochawesome-reporter/plugin')(on);
+      },
+```
+- install it first 
+
+```
+npm i --save-dev cypress-mochawesome-reporter
+```
+- You need to register all event in support pacakge in e2e.js (it place for all global variable and edit for configiration )
+
 ## cypress notes 
 - cypress only support CSS selectors 
 - #IDNmae this is id 
