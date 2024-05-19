@@ -4,13 +4,22 @@
   "description": "A simple project to demonstrate Cypress automation.",
   "main": "index.js",
   "scripts": {
-    "test": "cypress run"
+    "test": "npx  cypress run",
+    "generate-report": "npx mochawesome-merge 'cypress/reports/mocha/*.json' > 'cypress/reports/merged-report.json' && npx marge 'cypress/reports/merged-report.json' --reportDir 'cypress/reports/html' --reportFilename index",
+    "headTest":"npx cypress run --headed",
+    "recordDashBoardTest":"npx cypress run --recordDashBoardTest --key ",
+    "chrometest":"npx cypress run --browser chrome"
+  
   },
+  
   "author": "ziko",
   "license": "ISC",
   "devDependencies": {
     "cypress": "^13.7.3",
     "cypress-iframe": "^1.0.1",
-    "cypress-mochawesome-reporter": "^3.8.2"
+    "cypress-mochawesome-reporter": "^3.8.2",
+    "mochawesome": "^7.1.3",
+    "mochawesome-merge": "^4.3.0",
+    "mochawesome-report-generator": "^6.2.0"
   }
 }

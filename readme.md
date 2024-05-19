@@ -113,7 +113,7 @@ As similar to drive in selenium use the command to go to url
 
 ```
 
-- you can use this link to make env filr work on all  write it inside your test file 
+- you can use this link to make env filr work on all  write it insi de your test file 
 ```
 Cypress.env('url')
 ```
@@ -576,3 +576,14 @@ In the context of Cypress, cy.all() can be achieved with a helper function that 
 
 .spread() is a method that comes from the Bluebird promise library, which was more commonly used in earlier versions of JavaScript for handling promises. It takes an array of resolved values and spreads them out as arguments to a function.
 In more modern JavaScript (ES6 and beyond), this behavior can typically be handled with Promise.all() combined with destructuring in the .then() callback.
+
+## connect to cloud of Cypress 
+- use make accoount then create project and take the id of the project and put in config as 
+```
+projectId: "7q8djo"
+```
+``
+npx cypress run --record --key 7dc7f590-a366-4fd3-b913-09d7347499e6
+```
+to run for terminal to make it record your project on clud 
+- the key is change and you take it form cloud 
