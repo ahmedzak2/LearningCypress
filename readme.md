@@ -129,7 +129,7 @@ follow this link in page
 https://www.npmjs.com/package/cypress-mochawesome-reporter
 ```
 
-- This is lisnter is require and it write inside of stepupNode  & stepupNode is which change behaviour of cypress 
+- This is lisnter is required, and it writes inside stepupNode  & stepupNode is which change behaviour of cypress 
 
 ```
 setupNodeEvents(on, config) {
@@ -582,8 +582,56 @@ In more modern JavaScript (ES6 and beyond), this behavior can typically be handl
 ```
 projectId: "7q8djo"
 ```
-``
+```
 npx cypress run --record --key 7dc7f590-a366-4fd3-b913-09d7347499e6
 ```
+
 to run for terminal to make it record your project on clud 
 - the key is change and you take it form cloud 
+
+## cypress cucumber preprocessor
+- Open the link and the follow the instructions 
+
+```
+https://github.com/badeball/cypress-cucumber-preprocessor
+
+```
+- It will added dependcy in pacakage.json
+
+- Sperate the setupNodeEvent form E2E to make the code clean 
+- And make all plugin information alone and to make readable 
+- I need to to import browserify preprocessor and i need to browserify pacakge as shown  all thes java script compiler enginge 
+- In cypress.config 
+```
+  addCucumberPreprocessorPlugin,
+} = require("@badeball/cypress-cucumber-preprocessor");
+const {
+  preprocessor,
+} = require("@badeball/cypress-cucumber-preprocessor/browserify");
+
+async function setupNodeEvents(on, config) {
+  require('cypress-mochawesome-reporter/plugin')(on);
+
+  // This is required for the preprocessor to be able to generate JSON reports after each run, and more,
+  await addCucumberPreprocessorPlugin(on, config);
+
+  on("file:preprocessor", preprocessor(config));
+
+  // Make sure to return the config object as it might have been modified by the plugin.
+  return config;
+}
+
+```
+
+- In pacakageJson 
+
+```
+  "dependencies": {
+    "@badeball/cypress-cucumber-preprocessor": "^20.0.5",
+    "@cypress/browserify-preprocessor": "latest"
+
+  }
+```
+
+- The feature file will look for step definitions for floder which have the same name of feature file 
+ 
