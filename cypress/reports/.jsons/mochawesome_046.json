@@ -1,0 +1,171 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 4,
+    "passes": 3,
+    "pending": 0,
+    "failures": 1,
+    "start": "2024-05-26T19:22:43.560Z",
+    "end": "2024-05-26T19:23:05.100Z",
+    "duration": 21540,
+    "testsRegistered": 4,
+    "passPercent": 75,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "623f2c3f-4f39-4a1c-8647-75116b006862",
+      "title": "",
+      "fullFile": "cypress\\integration\\testcases\\TestFrameWork2.js",
+      "file": "cypress\\integration\\testcases\\TestFrameWork2.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "3460872a-9271-4771-959b-eb1b97bbe7f7",
+          "title": "My end to end Test Suite",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Customer buy mobile",
+              "fullTitle": "My end to end Test Suite Customer buy mobile",
+              "timedOut": null,
+              "duration": 6400,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.contains('.nav-link', 'Shop').click();\nproducts.getItemsName().each(function ($el, index) {\n  if ($el.text().includes('Blackberry')) {\n    products.getAddButton().eq(index).click();\n  }\n});\nproducts.getCheckout().click();\ncheckOut.getCheckoutButton().click();\ncheckOut.getCheckBox().click({\n  force: true\n});\ncheckOut.getDeliveryLocationField().type(this.data.home);\ncheckOut.getPurchaseButton().click();\ncheckOut.getAlertMessage().contains('Success! Thank you! Your order will be delivered in next few weeks ');",
+              "err": {},
+              "uuid": "c094fbb0-7dc7-4b83-a989-8893b0130ae7",
+              "parentUUID": "3460872a-9271-4771-959b-eb1b97bbe7f7",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Customer buy multiple mobiles",
+              "fullTitle": "My end to end Test Suite Customer buy multiple mobiles",
+              "timedOut": null,
+              "duration": 2275,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "products.getshop().click();\nthis.data.productName.forEach(function (element) {\n  cy.selectProduct(element);\n});\nproducts.getCheckout().click();\ncheckOut.getCheckoutButton().click();\ncheckOut.getCheckBox().click({\n  force: true\n});\ncheckOut.getDeliveryLocationField().type(this.data.home);\ncheckOut.getPurchaseButton().click();\ncheckOut.getAlertMessage().contains('Success! Thank you! Your order will be delivered in next few weeks ');",
+              "err": {},
+              "uuid": "93f6b02a-20af-41d6-a812-32a23c0d9a19",
+              "parentUUID": "3460872a-9271-4771-959b-eb1b97bbe7f7",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Customer buys mobile by Page object",
+              "fullTitle": "My end to end Test Suite Customer buys mobile by Page object",
+              "timedOut": null,
+              "duration": 6925,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "var _this = this;\nCypress.config('defaultCommandTimeout', 9000);\nproducts.getshop().click();\nproducts.getItemsName().each(function ($el, index) {\n  if ($el.text().includes('Blackberry')) {\n    products.getAddButton().eq(index).click();\n  }\n});\nproducts.getCheckout().click();\ncheckOut.getCheckoutButton().click();\ncheckOut.getCheckBox().click({\n  force: true\n});\ncheckOut.getDeliveryLocationField().type(this.data.home);\ncheckOut.getSuggesstions().each(function ($el, index, $list) {\n  if ($el.text() === _this.data.countryChecked) {\n    cy.wrap($el).click();\n  }\n});\ncheckOut.getPurchaseButton().click();\ncheckOut.getAlertMessage().contains('Success! Thank you! Your order will be delivered in next few weeks ');",
+              "err": {},
+              "uuid": "636d0cba-1268-4e2e-a5c3-cfb9576bf34d",
+              "parentUUID": "3460872a-9271-4771-959b-eb1b97bbe7f7",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "check the toatl of cost of items ",
+              "fullTitle": "My end to end Test Suite check the toatl of cost of items ",
+              "timedOut": null,
+              "duration": 2279,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": "{\n  \"title\": \"cypress-mochawesome-reporter-screenshots\",\n  \"value\": [\n    [\n      \"\\\\TestFrameWork2.js\\\\My end to end Test Suite -- check the toatl of cost of items (failed).png\"\n    ],\n    [\n      \"\\\\TestFrameWork2.js\\\\My end to end Test Suite -- check the toatl of cost of items (failed) (attempt 2).png\"\n    ]\n  ]\n}",
+              "code": "var _this2 = this;\nCypress.config('defaultCommandTimeout', 9000);\nproducts.getshop().click();\nproducts.getItemsName().each(function ($el, index) {\n  if ($el.text().includes('Blackberry')) {\n    products.getAddButton().eq(index).click();\n  }\n  if ($el.text().includes('Blackberry')) {\n    products.getAddButton().eq(index).click();\n  }\n  if ($el.text().includes('iphone X')) {\n    products.getAddButton().eq(index).click();\n  }\n  if ($el.text().includes('iphone X')) {\n    products.getAddButton().eq(index).click();\n  }\n});\nproducts.getCheckout().click();\nPromise.all([checkOut.getAllPricesOfProducts(), checkOut.getTotalPrice()]).then(function (_ref) {\n  var _ref2 = (0, _slicedToArray2[\"default\"])(_ref, 2),\n    calculatedTotal = _ref2[0],\n    displayedTotal = _ref2[1];\n  expect(calculatedTotal).to.eq(displayedTotal);\n  cy.log(calculatedTotal);\n  cy.log(displayedTotal);\n});\ncheckOut.getAllPricesOfProducts().then(function (calculatedTotal) {\n  checkOut.getTotalPrice().then(function (displayedTotal) {\n    // Now we compare the totals within a then to ensure they have both resolved\n    expect(calculatedTotal).to.eq(displayedTotal);\n    cy.log(\"Calculated Total: \".concat(calculatedTotal));\n    cy.log(\"Displayed Total: \".concat(displayedTotal));\n  });\n});\ncheckOut.getCheckoutButton().click();\ncheckOut.getCheckBox().click({\n  force: true\n});\ncheckOut.getDeliveryLocationField().type(this.data.home);\ncheckOut.getSuggesstions().each(function ($el, index, $list) {\n  if ($el.text() === _this2.data.countryChecked) {\n    cy.wrap($el).click();\n  }\n});\ncheckOut.getPurchaseButton().click();\ncheckOut.getAlertMessage().contains('Success! Thank you! Your order will be delivered in next few weeks ');",
+              "err": {
+                "message": "CypressError: The following error originated from your test code, not from Cypress. It was caused by an unhandled promise rejection.\n\n  > Cypress detected that you returned a promise from a command while also invoking one or more cy commands in that promise.\n\nThe command that returned the promise was:\n\n  > `cy.click()`\n\nThe cy command you invoked inside the promise was:\n\n  > `cy.log()`\n\nBecause Cypress commands are already promise-like, you don't need to wrap them or return your own promise.\n\nCypress will resolve your command with whatever the final Cypress command yields.\n\nThe reason this is an error instead of a warning is because Cypress internally queues commands serially whereas Promises execute as soon as they are invoked. Attempting to reconcile this would prevent Cypress from ever resolving.\n\nWhen Cypress detects uncaught errors originating from your test code it will automatically fail the current test.\n\nhttps://on.cypress.io/returning-promise-and-commands-in-another-command",
+                "estack": "CypressError: The following error originated from your test code, not from Cypress. It was caused by an unhandled promise rejection.\n\n  > Cypress detected that you returned a promise from a command while also invoking one or more cy commands in that promise.\n\nThe command that returned the promise was:\n\n  > `cy.click()`\n\nThe cy command you invoked inside the promise was:\n\n  > `cy.log()`\n\nBecause Cypress commands are already promise-like, you don't need to wrap them or return your own promise.\n\nCypress will resolve your command with whatever the final Cypress command yields.\n\nThe reason this is an error instead of a warning is because Cypress internally queues commands serially whereas Promises execute as soon as they are invoked. Attempting to reconcile this would prevent Cypress from ever resolving.\n\nWhen Cypress detects uncaught errors originating from your test code it will automatically fail the current test.\n\nhttps://on.cypress.io/returning-promise-and-commands-in-another-command\n    at cy.<computed> [as log] (https://rahulshettyacademy.com/__cypress/runner/cypress_runner.js:138447:64)\nFrom Your Spec Code:\n    at eval (cypress/integration/testcases/TestFrameWork2.js:104:12)",
+                "diff": null
+              },
+              "uuid": "e3d9917d-319f-456f-b767-628253065f72",
+              "parentUUID": "3460872a-9271-4771-959b-eb1b97bbe7f7",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "c094fbb0-7dc7-4b83-a989-8893b0130ae7",
+            "93f6b02a-20af-41d6-a812-32a23c0d9a19",
+            "636d0cba-1268-4e2e-a5c3-cfb9576bf34d"
+          ],
+          "failures": [
+            "e3d9917d-319f-456f-b767-628253065f72"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 17879,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress\\reports\\.jsons",
+        "charts": true,
+        "reportPageTitle": "Test Report",
+        "embeddedScreenshots": true,
+        "inlineAssets": true,
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "6.2.0"
+    }
+  }
+}

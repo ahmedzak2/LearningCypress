@@ -635,3 +635,34 @@ async function setupNodeEvents(on, config) {
 
 - The feature file will look for step definitions for floder which have the same name of feature file 
  
+
+
+ - add data by using cucmber  
+  - feature file 
+  ```
+Scenario: Filling the frome2
+    Given Customer open the form Page
+    When  I fill the form details
+    |name|gender|
+    |aya |female|
+    Then validate the form 
+
+  ```
+- as see  yo add the data as seen shwon above 
+ - and in step def use convert this to array of 2 demintions and and use index to naviagate to data you need as shown  
+
+ ```
+  homePage.getEditBox().type(dataTable.rawTable[1][0]);
+    cy.wait(1000);
+    homePage.getGender().select(dataTable.rawTable[1][1]).should('have.value', 'Female');
+    cy.wait(5000); // Waits for 5000 milliseconds (5 seconds)
+    ```
+
+  - as in cypress config we make configuration which take boolen true or flase and if false it make it choose the url as shown 
+   ```
+   npx cypress run --env USE_URL2=false --spec "cypress/integration/testcases/TestFrameWork2.js" --headed --browser chrome
+   ```
+   the configuration 
+   ```
+     config.baseUrl = Boolean(config.env.USE_URL2) ? config.env.url2 : config.env.url;
+   ```  

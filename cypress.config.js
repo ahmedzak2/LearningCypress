@@ -4,20 +4,21 @@ const browserify = require("@badeball/cypress-cucumber-preprocessor/browserify")
 
 async function setupNodeEvents(on, config) {
   require('cypress-mochawesome-reporter/plugin')(on);
-await preprocessor.addCucumberPreprocessorPlugin(on, config);
-on("file:preprocessor", browserify.default(config));
-return config;
+  await preprocessor.addCucumberPreprocessorPlugin(on, config);
+  on("file:preprocessor", browserify.default(config));
+  config.baseUrl = Boolean(config.env.USE_URL2) ? config.env.url2 : config.env.url;
+  console.log('Base URL:', config.baseUrl);
 
-};
+  return config;
+}
 
 module.exports = defineConfig({
   projectId: "7q8djo",
   defaultCommandTimeout: 6000,
   reporter: 'cypress-mochawesome-reporter',
-
-  env:{
-
-    url:"https://rahulshettyacademy.com",
+  env: {
+    url: "https://rahulshettyacademy.com",
+    url2: "https://example2.com",
   },
   reporterOptions: {
     reportDir: 'cypress/reports',
@@ -26,11 +27,9 @@ module.exports = defineConfig({
     embeddedScreenshots: true,
     inlineAssets: true,
   },
-  retries:{
-    runMode:1,
-
+  retries: {
+    runMode: 1,
   },
-
   e2e: {
     setupNodeEvents,
     specPattern: ['cypress/integration/**/*.js', 'cypress/integration/**/*.feature'],

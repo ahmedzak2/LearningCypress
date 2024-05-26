@@ -11,8 +11,13 @@ describe('My end to end Test Suite', function() {
     });
 
     beforeEach(function() {
-        
-        cy.visit(Cypress.env('url')+"/angularpractice/");
+         // cy.visit('/angularpractice/');
+ // cy.visit('/angularpractice/');
+
+        //cy.visit(Cypress.env('url')+"/angularpractice/");
+       cy.visit(Cypress.config('baseUrl') + "/angularpractice/");
+         cy.log(Cypress.config('baseUrl'));//W baseUrl
+
         cy.fixture('example').then(function(data) {
             this.data = data;
         });
