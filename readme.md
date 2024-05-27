@@ -656,13 +656,48 @@ Scenario: Filling the frome2
     cy.wait(1000);
     homePage.getGender().select(dataTable.rawTable[1][1]).should('have.value', 'Female');
     cy.wait(5000); // Waits for 5000 milliseconds (5 seconds)
-    ```
+ ```
 
   - as in cypress config we make configuration which take boolen true or flase and if false it make it choose the url as shown 
+   
    ```
    npx cypress run --env USE_URL2=false --spec "cypress/integration/testcases/TestFrameWork2.js" --headed --browser chrome
    ```
+   
    the configuration 
+   
    ```
      config.baseUrl = Boolean(config.env.USE_URL2) ? config.env.url2 : config.env.url;
    ```  
+   ## JsonReports
+
+   ```
+    "cypress-cucumber-preprocessor":
+  {
+    "json": {
+      "enabled": true
+    }
+  },
+ ```
+ - You add this in jason package to use it to make it run test using json
+ - To generate cucmber reports 
+  - to more information use 
+
+  ```
+  https://github.com/badeball/cypress-cucumber-preprocessor/blob/master/docs/json-report.md
+  ```
+
+  - you need to donwlaond plugin  to convert it tml report 
+
+  ```
+  https://www.npmjs.com/package/multiple-cucumber-html-reporter
+  ```
+
+ **There file name cucumber-html-report.js**
+ - this have the configuration to generate reports  and you edit in this 
+
+ - then enter the command 
+ ```
+ node cucumber-html-report.js
+ ````
+ - to convert json file to report 
