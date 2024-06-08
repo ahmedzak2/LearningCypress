@@ -759,4 +759,51 @@ cypress.Commands.add('LoginAPI',()=>{
 ```
 - we use this to make command  to use in any page
 
-- Cypress.env is to make token as enviroment variable to use it in any where for the enviroment 
+- Cypress.env is to make token as enviroment variable to use it in any where for the enviroment
+
+
+##  CSV 
+- T load CSV file you should add this plugin  in package.json 
+
+```
+    "neat-csv":"5.1.0"
+```
+
+```
+const csv=   neatCSV(text)
+
+```
+- to converrt the CSV file to texxt 
+  - to access to the element inside the CSV file 
+
+  ```
+       Cypress.config("fileServerFolder")
+
+```
+- To get you path of project 
+
+
+
+ ```
+cy.readFile(Cypress.config("fileServerFolder")+"/cypress/downloads/order-invoice_anshika.csv").then(async function(text){
+
+        const csv=  await neatCSV(text)
+
+     })
+
+ ```
+ - To call the function and use it to access the element of CSV file 
+
+ - To access CSV element 
+
+ ```
+         csv[0]['product Name']
+
+```
+- we use this if the property have space betwen word 
+
+- And if not have space 
+-  we use this 
+```
+csv[0].productName
+```
