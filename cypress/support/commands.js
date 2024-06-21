@@ -24,6 +24,9 @@
 // -- This will overwrite an existing command --
 
 import Products from "../integration/pageObject/Products"
+import sqlServer from 'cypress-sql-server';
+sqlServer.loadDBCommands();
+
 
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 Cypress.Commands.add('selectProduct', (productName) => { 

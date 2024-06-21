@@ -639,6 +639,8 @@ async function setupNodeEvents(on, config) {
 
 - add data by using cucmber
 - feature file
+
+
   ```
 Scenario: Filling the frome2
     Given Customer open the form Page
@@ -648,6 +650,8 @@ Scenario: Filling the frome2
     Then validate the form 
 
   ```
+
+
 - as see  yo add the data as seen shwon above
 - and in step def use convert this to array of 2 demintions and and use index to naviagate to data you need as shown
 
@@ -769,17 +773,19 @@ cypress.Commands.add('LoginAPI',()=>{
     "neat-csv":"5.1.0"
 ```
 
+
 ```
 const csv=   neatCSV(text)
 
 ```
+
 - to converrt the CSV file to texxt 
   - to access to the element inside the CSV file 
 
   ```
        Cypress.config("fileServerFolder")
 
-```
+  ```
 - To get you path of project 
 
 
@@ -806,4 +812,105 @@ cy.readFile(Cypress.config("fileServerFolder")+"/cypress/downloads/order-invoice
 -  we use this 
 ```
 csv[0].productName
+```
+
+- Zero refer to first raw of excel 
+
+
+## SQL 
+
+- we need to folow step to install sql plugin 
+
+```
+https://www.udemy.com/course/cypress-tutorial/learn/lecture/24204072#overview
+```
+- it will add in dependcy for sql server
+
+  - you need to add in config file to define the pluging 
+  - in side setupnode
+
+  ```
+tasks = sqlServer.loadDBPlugin(config.db);
+  on('task', tasks);
+
+  ```
+
+  - And define this above stepupnode
+
+  ```
+const sqlServer = require('cypress-sql-server');
+
+  ```
+
+
+## excel 
+
+- To convert excel to json  use command 
+
+```
+npm i convert-excel-to-json
+
+```
+
+- It don't work with cypress so you need to use the read file and use it to convert excel to json
+
+- use this code in test to convert excel to java 
+
+```
+const excelToJson = require('convert-excel-to-json');
+const fs = require('fs');
+
+const result = excelToJson({
+        source: fs.readFileSync('SOME-EXCEL-FILE.xlsx') // fs.readFileSync return a Buffer
+    });
+    
+```   
+
+- cypress xeceute all code on browser so you can't access the data base or file  beacuse browser don't support 
+
+  - so write all file as tasks  in config.js so it can read   so when define it as task it tell cypress that it something that browser engine don't support so use node engine .
+
+  in json config
+
+  ```
+ 
+  on('task',{
+    excelconvertToJson(filePath){
+      const result = excelToJson({
+        source: fs.readFileSync(filePath) // fs.readFileSync return a Buffer
+    });
+    return result
+    }
+
+  })
+
+  return config;
+}
+  
+  ```
+
+- To call the task follow as shown 
+
+```
+ cy.task('excelconvertToJson',filePath).then(function(result){
+        console.log(result)
+
+
+     })
+```
+
+thius function return all content of file as text regradless of  type of file 
+
+```
+ cy.readFile(downloadPath).then(function(text){
+        expect(text).to.include(productName)
+
+
+    })
+```
+
+- How to use excel and edit and use it 
+
+```
+npm install exceljs --savedev
 ```
