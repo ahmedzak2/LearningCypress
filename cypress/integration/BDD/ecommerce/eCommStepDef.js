@@ -28,11 +28,11 @@ When('i add the items to cart', () => {
 
 When('validate the  Total price is equal to which i order', () => {
     Promise.all([
-        checkout.getAllPricesOfProducts(), 
+        checkout.getAllPricesOfProducts(),
         checkout.getTotalPrice()
     ]).then(([calculatedTotal, displayedTotal]) => {
         expect(calculatedTotal).to.eq(displayedTotal);
-    
+
     });
     checkout.getAllPricesOfProducts().then(calculatedTotal => {
         checkout.getTotalPrice().then(displayedTotal => {

@@ -701,11 +701,14 @@ the configuration
 - this have the configuration to generate reports  and you edit in this
 
 - then enter the command
- ```
- node cucumber-html-report.js
- ````
-
  
+
+```
+ node cucumber-html-report.js
+````
+
+
+
 - to convert json file to report
 
 - And itwhen config it in step def we definer by which it follow if follow when then the step will be with when
@@ -911,8 +914,68 @@ thius function return all content of file as text regradless of  type of file
     })
 ```
 
-- How to use excel and edit and use it 
+** How to use excel and edit and use it 
 
 ```
 npm install exceljs --savedev
 ```
+
+
+```
+const ExcelJs= require('exceljs');
+// object created for class 
+
+const workBook=  new ExcelJs.Workbook();
+const workSheet= workBook.getWorksheet('Sheet1')
+
+```
+- This line creates a new instance of a workbook. A workbook is essentially an Excel file, and this object will allow you to manipulate it. When you create a new Workbook instance like this, it’s initially empty until you add data to it or load an existing file.
+
+- const workSheet= workBook.getWorksheet('Sheet1')  it tell the cypress which sheet to access  and save it in varabile to access all element in sheet 
+
+
+```
+async function excelTest(){
+const workBook=  new ExcelJs.Workbook();
+await workBook.xlsx.readFile("D:/zaiko courses/final project UTW/2.light/light_excel_sheet.xlsx")
+
+
+const workSheet= workBook.getWorksheet('Sheet1');
+workSheet.eachRow((row,rowNumber)=>
+    {
+        row.eachCell((cell,colNumber)=>
+        {
+            console.log(cell.value)
+
+        })
+
+    
+    })
+}
+
+excelTest()
+```
+- we use those  
+
+ - workSheet.eachRow((row,rowNumber)=>
+    {
+        row.eachCell((cell,colNumber)=>
+        {
+        })})
+
+ - To serach in every row then in every ceell of this row execute the code which we use 
+ - We use await and async to make it wait till read file 
+
+ - use this command to exceute the file 
+
+ ```
+ node excelEdit.js
+ ```
+ - To edit in cell value we use those  getCell to get target cell 
+ - we use last  command to overwrite current excel with the one you edit 
+
+ ```
+const cell = workSheet.getCell(3,3)
+cell.value="ahmedIp"
+await workBook.xlsx.writeFile("D:/zaiko courses/final project UTW/2.light/light_excel_sheet.xlsx")
+ ```
